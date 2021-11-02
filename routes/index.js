@@ -38,7 +38,7 @@ router.post('/api/user/register', function(req, res) {
 
 
 router.post('/api/user/register', 
-body("username").isLength({min: 3}).trim().escape(),
+body("email").isLength({min: 3}).trim().escape(),
 body("password").isLength({min: 5}),
 (req, res, next) => {
   
@@ -47,20 +47,20 @@ body("password").isLength({min: 5}),
     return res.status(400).json({errors: errors.array()});
   }
   
-  User.findOne({username: req.body.username}, (err, user) => {
+  User.findOne({email: req.body.email}, (err, user) => {
     if(err) {
       console.log(err);
       throw err
     };
     if(user){
-      return res.status(403).json({username: "Username already in use."});
+      return res.status(403).json({email: "Email already in use."});
     } else {
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(req.body.password, salt, (err, hash) => {
           if(err) throw err;
           User.create(
             {
-              username: req.body.username,
+              email: req.body.email,
               password: hash
             },
             (err, ok) => {
