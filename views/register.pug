@@ -3,8 +3,8 @@ extends layout
 block content
   h1 Register
   form(action="/api/user/register" method="POST")
-    label(for="username") Username 
-    input(type="text" name="username" id="username" required autocomplete="on")
+    label(for="email") Email 
+    input(type="text" name="email" id="email" required autocomplete="on")
     label(for="password") Password 
     input(type="password" name="password" id="password" required autocomplete="on")
     button(class="btn" type="submit") Register
