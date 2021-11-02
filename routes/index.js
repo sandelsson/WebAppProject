@@ -65,6 +65,7 @@ body("password").isLength({min: 5}),
             },
             (err, ok) => {
               if(err) throw err;
+              res.send("ok")
               return res.redirect("/api/user/register");
             }
           );
