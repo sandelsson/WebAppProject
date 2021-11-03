@@ -22,7 +22,7 @@ router.get('/api/user/register', function(req, res) {
 
 router.post('/api/user/register', 
 body("email").isLength({min: 3}).trim().escape(),
-body("password").isLength({min: 5}),
+body("password").isLength({min: 5}).escape(),
 (req, res, next) => {
   
   const errors = validationResult(req);
