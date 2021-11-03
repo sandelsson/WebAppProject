@@ -66,7 +66,7 @@ router.get('/api/user/login', function(req, res) {
 
 router.post('/api/user/login', 
   body("email").trim().escape(),
-  body("password").escape(),
+  body("password"),
   (req, res, next) => {
     User.findOne({email: req.body.email}, (err, user) =>{
     if(err) throw err;
