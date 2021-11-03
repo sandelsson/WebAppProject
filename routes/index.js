@@ -101,7 +101,19 @@ router.post('/api/user/login',
 
 
 
+router.get('/api/private', validateToken, function(req, res, next) {
+  User.find({token}, (err,users) =>{
+    if (err){
+      return next(err)
+    }else{
+      res.json({success: true, token});
+      
+    }
+  })
+  
 
+
+});
 
 
 
