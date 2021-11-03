@@ -4,10 +4,9 @@ const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const {body, validationResult } = require("express-validator");
 const User = require("../models/User");
-/*
 const jwt = require("jsonwebtoken");
 const validateToken = require("../auth/validateToken.js")
-*/
+
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -19,22 +18,6 @@ router.get('/api/user/register', function(req, res) {
   //res.render('register');
   res.render('register')
 });
-
-/*
-router.post('/api/user/register', function(req, res) {
-  //res.render('register');
-  //res.send("ok")
-  console.log(req.body.username)
-  User.create(
-    {
-      username: req.body.username,
-      password: req.body.password
-    })
-  res.redirect("/api/user/register")
-  //next();
-  
-});
-*/
 
 
 router.post('/api/user/register', 
@@ -74,6 +57,51 @@ body("password").isLength({min: 5}),
     }
   });
 });
+
+
+router.get('/api/user/login', function(req, res) {
+  //res.render('register');
+  res.render('login')
+});
+
+router.post('/api/user/login', 
+  body("email").trim().escape(),
+  body("password").escape(),
+  (req, res, next) => {
+    User.findOne({email: req.body.email}, (err, user) =>{
+    if(err) throw err;
+    if(!user) {
+      return res.status(403).json({message: "Login failed :("});
+    } else {
+      bcrypt.compare(req.body.password, user.password, (err, isMatch) => {
+        if(err) throw err;
+        if(isMatch) {
+          const jwtPayload = {
+            id: user._id,
+            email: user.email
+          }
+          jwt.sign(
+            jwtPayload,
+            process.env.SECRET,
+            {
+              expiresIn: 120
+            },
+            (err, token) => {
+              res.json({success: true, token});
+            }
+          );
+        }
+      })
+    }
+
+    })
+
+});
+
+
+
+
+
 
 
 
