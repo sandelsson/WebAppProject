@@ -107,7 +107,7 @@ router.get('/api/private', validateToken, function(req, res, next) {
   
   User.find({}, (err,users) =>{
     if (err){
-      return next(err)
+      return res.status(401).json({errors: err.array()});
     }else{
       //res.send({users})
       res.json(
