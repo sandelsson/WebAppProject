@@ -22,7 +22,9 @@ router.get('/api/user/register', function(req, res) {
 
 router.post('/api/user/register', 
 body("email").isLength({min: 3}).trim().escape(),
-body("password").isLength({min: 5}),
+body("password").isStrongPassword({ minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1}),
+//body("password").isLowercase,
+//body("password").contains("a"),
 (req, res, next) => {
   
   const errors = validationResult(req);
@@ -48,9 +50,9 @@ body("password").isLength({min: 5}),
             },
             (err, ok) => {
               if(err) throw err;
+              //return res.json({email: user.email})
               return res.send("ok")
-              //return res.redirect("/api/user/register");
-            }
+              }
           );
         });
       });
@@ -102,14 +104,22 @@ router.post('/api/user/login',
 
 
 router.get('/api/private', validateToken, function(req, res, next) {
-  User.find({token}, (err,users) =>{
+  
+  User.find({}, (err,users) =>{
     if (err){
       return next(err)
     }else{
-      res.json({success: true, token});
+      //res.send({users})
+      res.json(
+        {
+          email: users.email
+        }
+        )
       
     }
   })
+  
+  
   
 
 
