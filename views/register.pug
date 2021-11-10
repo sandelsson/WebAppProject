@@ -4,8 +4,9 @@ block content
   h1 Register
   form(action="/register.html" id = "register-form" method="POST")
     label(for="email") Email 
-    input(type="email" name="email" id="email" required autocomplete="on")
+    input(type="email" name="email" id="email" required autocomplete="")
     label(for="password") Password 
     input(type="password" name="password" id="password" required autocomplete="on")
-    input(class="btn" type="submit") Register
+    //label(for="submit") Register
+    input(type="submit" value="Register")
   script(src="/javascripts/register.js")
