@@ -36,10 +36,10 @@ window.onload = (event) =>{
        var c = document.createElement('button');
        var linkText = document.createTextNode("Logout");
        c.appendChild(linkText);
-       c.id = "logout-button";
+       c.id = "logout";
        c.href = "/login.html";
        document.body.appendChild(c).addEventListener("click", logout)
-       
+
         fetch("/list", {
             method: "GET",
             headers: {
