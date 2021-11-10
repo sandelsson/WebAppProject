@@ -6,11 +6,23 @@ const {body, validationResult } = require("express-validator");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const validateToken = require("../auth/validateToken.js")
+const multer = require("multer")
+const storage = multer.memoryStorage();
+const upload = multer({storage})
+
 
 
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
+});
+
+router.get('/register.html', function(req, res) {
+  res.render('register');
+});
+
+router.get('/login.html', function(req, res) {
+  res.render('login');
 });
 
 
@@ -20,11 +32,13 @@ router.get('/api/user/register', function(req, res) {
 });
 
 
-router.post('/api/user/register', 
-body("email").isLength({min: 3}).trim().escape(),
-body("password").isStrongPassword({ minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1}),
-//body("password").isLowercase,
-//body("password").contains("a"),
+router.post('/register.html', 
+//body("email").isLength({min: 3}).trim().escape(),
+//body("password").isStrongPassword({ minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1}),
+//body("username").isLength({min: 3}).trim().escape(),
+//body("password").isLength({min: 5}),
+upload.none(),
+
 (req, res, next) => {
   
   const errors = validationResult(req);
@@ -101,7 +115,7 @@ router.post('/api/user/login',
 });
 
 
-
+/*
 
 router.get('/api/private', validateToken, function(req, res, next) {
   
@@ -112,7 +126,7 @@ router.get('/api/private', validateToken, function(req, res, next) {
       //res.send({users})
       res.json(
         {
-          email: users.email
+          email: body.email
         }
         )
       
@@ -120,12 +134,11 @@ router.get('/api/private', validateToken, function(req, res, next) {
   })
   
   
-  
 
 
 });
 
-
+*/
 
 
 module.exports = router;
