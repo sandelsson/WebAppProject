@@ -80,9 +80,10 @@ router.get('/api/user/login', function(req, res) {
   res.render('login')
 });
 
-router.post('/api/user/login', 
-  body("email").trim().escape(),
-  body("password"),
+router.post('/login.html', 
+  //body("email").trim().escape(),
+  //body("password"),
+  upload.none(),
   (req, res, next) => {
     User.findOne({email: req.body.email}, (err, user) =>{
     if(err) throw err;
