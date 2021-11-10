@@ -14,8 +14,25 @@ const upload = multer({storage})
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
+  res.render('index');
 });
+
+router.get('/list', validateToken, (req, res, next) => {
+  //var user = req.user;
+  /*if(req.user){
+    console.log(User.email)
+  }*/
+  
+  User.find({}, (err, users) =>{
+    if(err) return next(err);
+    const current_email = req.user.email
+    console.log(req.user.email)
+    //res.send(req.user.email)
+    res.render("index", {profile_email: current_email});
+  })
+  
+});
+
 
 router.get('/register.html', function(req, res) {
   res.render('register');
