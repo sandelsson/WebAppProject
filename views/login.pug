@@ -1,12 +1,13 @@
 extends layout
 
 block content
-  h1 Login
-  div(id="error" class="card-panel")
-  form(action="/login.html" id="login-form" method="POST")
-    label(for="email") Email 
-    input(type="email" name="email" id="email")
-    label(for="password") Password 
-    input(type="password" name="password" id="password" autocomplete ="on")
-    input(type="submit" value="Login")
+  div(class="container")
+    h1 Login
+    div(id="error" class="card-panel")
+    form(action="/login.html" id="login-form" method="POST")
+      label(for="email") Email 
+      input(type="email" name="email" id="email")
+      label(for="password") Password 
+      input(type="password" name="password" id="password" autocomplete ="on")
+      input(type="submit" value="Login" class="btn green")
   script(src="javascripts/login.js")

@@ -19,7 +19,9 @@ function onSubmit(event) {
         body: formData
     })
         .then((response) => response.json())
-    window.location.href="/login.html";
+    
+        window.location.href="/login.html";
+    
 
 }
 

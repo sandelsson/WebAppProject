@@ -13,85 +13,31 @@ if (document.readyState !== "loading") {
 
 window.onload = (event) =>{
     event.preventDefault();
-    const authToken = localStorage.getItem("auth_token");
+    const authToken = localStorage.getItem("auth_token"); //getting the auth_token if user is logged in
 
     if(!authToken){
-        var a = document.createElement('a');
-        var linkText = document.createTextNode("Login");
-        a.appendChild(linkText);
-        a.id = "Login-href";
-        a.href = "/login.html";
-        document.body.appendChild(a);
-        document.body.append(" ")
-        var b = document.createElement('a');
-        var linkTextb = document.createTextNode("Register");
-        b.appendChild(linkTextb);
-        b.id = "Register-href";
-        b.href = "/register.html";
-        document.body.appendChild(b);
+
+        //if the user is not logged in, the create_post and login href's are hidden
+        document.getElementById("list").children[4].style.visibility = "hidden"
+        //document.getElementById("list").children[4].setAttribute("class", "hide")
+        document.getElementById("list").children[5].style.visibility = "hidden"
+
+       
         return
         
        }
-       
-       var c = document.createElement('button');
-       var linkText = document.createTextNode("Logout");
-       c.appendChild(linkText);
-       c.id = "logout";
-       c.href = "/login.html";
-       document.body.appendChild(c).addEventListener("click", logout)
+    //if the user is logged in -> login-page and register-page are hidden
+    profile_email.innerHTML = "Logged in as: " + localStorage.getItem("current_user")
+    document.getElementById("list").children[1].style.visibility = "hidden"
+    document.getElementById("list").children[2].style.visibility = "hidden"
+    console.log(document.getElementById("list").children[5])
 
-        fetch("/list", {
-            method: "GET",
-            headers: {
-                "authorization": "Bearer " + authToken
-            }
-        })
-            .then((response) => response.text())
-            .then((page) => {
-                document.getElementById("page-content").innerHTML = page
-            })
-            .catch((e) => {
-                console.log("error" + e);
-            })
     }
-        /*
-        .then((response) => response.text())
-        .then((page) => {
-            document.getElementById("page-content").innerHTML = page;
-        })*/
+    
 
-/*
-function myFunction(event) {
-    event.preventDefault();
-    const authToken = localStorage.getItem("auth_token");
-
-    if(!authToken){
-        var a = document.createElement('a');
-        var linkText = document.createTextNode("Register");
-        a.appendChild(linkText);
-        a.id = "Register-href";
-        a.href = "/register.html";
-        document.body.appendChild(a);
-    }
-    fetch("/users/list", {
-        method: "GET",
-        headers: {
-            "authorization": "Bearer " + authToken
-        }
-    })
-        .then((response) => response.text())
-        .then((page) => {
-            document.getElementById("content").innerHTML = page;
-        })
-        .catch((e) => {
-            console.log("error" + e);
-        })
-
-}
-*/
-
-
+//when logging out, auth_token and current_user items are removed from the localStorage
 function logout(){
     localStorage.removeItem("auth_token");
+    localStorage.removeItem("current_user")
     window.location.href = "/";
 }

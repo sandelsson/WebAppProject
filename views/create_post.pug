@@ -1,0 +1,19 @@
+extends layout
+
+
+block content
+  main(class="container") 
+    h1 Post your Code
+    form(action="/post.html" id = "post-form" method="POST")
+      label(for="subject") Subject 
+      input(type="text" name="subject" id="subject" required autocomplete="on")
+      label(for="snippet") Code Snippet
+      br
+      //input(type="textarea" rows="10" cols="50" name="snippet" id="snippet")
+      br
+      br
+      textarea(name="snippet" id="snippet" form= "post-form" style="height: 300px;")
+      br
+      input(type="text" 'hidden' id="current_user" name= "current_user")
+      input(type="submit" value="Post" class="btn green")
+  script(src="javascripts/post.js")

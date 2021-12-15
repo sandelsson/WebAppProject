@@ -1,0 +1,18 @@
+block content
+  div(class="container") 
+    h1 All the posts
+    table
+      tr 
+        th Email
+        th Subject
+      each snippet, index in snippets 
+        tr(id = "key_element" key=snippet["id"])
+          td(class="col s6 m4 l3")= snippet["poster"]
+          //td= snippet["id"]
+          //td= snippet["id"]
+          td= snippet["subject"]
+          td 
+            a(href="/posts/"+snippet["id"]) View Code
+          //<td><a href="/code-snippet">View Code</a></td>
+
+  script(src="javascripts/posts.js")

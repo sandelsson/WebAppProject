@@ -1,0 +1,13 @@
+
+block content
+  //main(class="container")
+  div
+    table
+      tr
+      each comment, index in snippets.comments
+        tr
+          td(style="font-weight: bold")=comment["commentor"]
+          td=comment["comment"]
+          //td= comment["comment"]
+
+  script(src="javascripts/posts.js")

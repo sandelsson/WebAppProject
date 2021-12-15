@@ -1,8 +1,20 @@
+extends layout
 block content
-title 
-body
-    div(id="page-content")
-    h2=profile_email
-    //div(name="profilename")
-script(src="javascripts/index.js")
+    nav
+        <div class="nav-wrapper" id="page-content">
+            <ul id="list" class="left hide-on-med-and-down">
+                <a href="/" class="brand-logo right">SandeOverFlow</a>
+                <li><a href="/Login.html">Login</a></li>
+                <li><a href="/Register.html">Register</a></li>
+                <li><a href="/Posts">Posts</a></li>
+                <li><a href="/post.html">Create a Post</a></li>
+                <li><a href="/" onclick="logout()">Logout</a></li>
+
+        div(class="container" id="container")
+        ul
+            li(id="profile_email")=profile_email
+        //hr
+        //footer
+    
+    script(src="javascripts/index.js")
 

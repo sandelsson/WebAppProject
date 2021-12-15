@@ -1,12 +1,14 @@
 extends layout
 
 block content
-  h1 Register
-  form(action="/register.html" id = "register-form" method="POST")
-    label(for="email") Email 
-    input(type="email" name="email" id="email" required autocomplete="on")
-    label(for="password") Password 
-    input(type="password" name="password" id="password" required autocomplete="on")
-    //label(for="submit") Register
-    input(type="submit" value="Register")
+  div(class="container")
+    h1 Register
+    div(id="error" class="card-panel")
+    form(action="/register.html" id = "register-form" method="POST")
+      label(for="email") Email 
+      input(type="email" name="email" id="email" required autocomplete="on")
+      label(for="password") Password 
+      input(type="password" name="password" id="password" required autocomplete="on")
+      //label(for="submit") Register
+      input(type="submit" value="Register" class="btn green")
   script(src="/javascripts/register.js")

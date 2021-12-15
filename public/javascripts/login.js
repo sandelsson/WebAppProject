@@ -27,7 +27,7 @@ function onSubmit(event) {
                 if (data.message) {
                     document.getElementById("error").innerHTML = data.message;
                 }  else {
-                    document.getElementById("error").innerHTML = "Very strange error!";
+                    document.getElementById("error").innerHTML = "error!";
                 }
             }
 
@@ -35,6 +35,8 @@ function onSubmit(event) {
 
 }
 
+//if login is successfull, auth_token and current_user items are added to the localStorage.
 function storeToken(token) {
     localStorage.setItem("auth_token", token);
+    localStorage.setItem("current_user", document.getElementById("email").value)
 }
