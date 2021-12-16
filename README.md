@@ -11,7 +11,10 @@ npm i bcrypt bcryptjs cookie-parser debug dotenv express express-validator http-
 
 The site is using mongodb which can be downloaded from here: https://www.mongodb.com/try/download/community
 
-run the server with: npm start
+run the server with: 
+
+npm start
+
 server is running on port 1234 --> localhost:1234
 
 USER MANUAL:
