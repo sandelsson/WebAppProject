@@ -7,12 +7,11 @@ block content
         th Subject
       each snippet, index in snippets 
         tr(id = "key_element" key=snippet["id"])
-          td(class="col s6 m4 l3")= snippet["poster"]
+          td(class="col s12 m6 l3 flow-text")= snippet["poster"]
           //td= snippet["id"]
           //td= snippet["id"]
-          td= snippet["subject"]
+          td(class="col s12 m6 l3 flow-text")= snippet["subject"]
           td 
             a(href="/posts/"+snippet["id"]) View Code
-          //<td><a href="/code-snippet">View Code</a></td>
 
   script(src="javascripts/posts.js")

@@ -6,8 +6,8 @@ block content
       tr
       each comment, index in snippets.comments
         tr
-          td(style="font-weight: bold")=comment["commentor"]
-          td=comment["comment"]
+          td(style="font-weight: bold" class="col s12 m6 l3 flow-text")=comment["commentor"]
+          td(class="col s12 m6 l3 flow-text")=comment["comment"]
           //td= comment["comment"]
 
   script(src="javascripts/posts.js")
