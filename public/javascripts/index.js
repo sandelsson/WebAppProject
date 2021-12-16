@@ -7,8 +7,21 @@ if (document.readyState !== "loading") {
   }
   
   function initializeCode() {
-    //const page_div = document.getElementById("page-content").addEventListener("onload", myFunction);
-}
+    const options = {
+      edge: 'right',
+      draggable: false,
+      inDuration: 250,
+      outDuration: 200,
+      onOpenStart: null,
+      onOpenEnd: null,
+      onCloseStart: null,
+      onCloseEnd: null,
+      preventScrolling: true
+  };
+
+    const elems = document.querySelectorAll('.sidenav');
+    const instances = M.Sidenav.init(elems, options);
+  }
 
 
 window.onload = (event) =>{
@@ -18,9 +31,11 @@ window.onload = (event) =>{
     if(!authToken){
 
         //if the user is not logged in, the create_post and login href's are hidden
+        document.getElementById("list").children[3].style.visibility = "hidden"
         document.getElementById("list").children[4].style.visibility = "hidden"
-        //document.getElementById("list").children[4].setAttribute("class", "hide")
-        document.getElementById("list").children[5].style.visibility = "hidden"
+        //hiding the same elements from the .sidebar
+        document.getElementById("mobile").children[3].style.visibility = "hidden"
+        document.getElementById("mobile").children[4].style.visibility = "hidden"
 
        
         return
@@ -28,10 +43,11 @@ window.onload = (event) =>{
        }
     //if the user is logged in -> login-page and register-page are hidden
     profile_email.innerHTML = "Logged in as: " + localStorage.getItem("current_user")
+    document.getElementById("list").children[0].style.visibility = "hidden"
     document.getElementById("list").children[1].style.visibility = "hidden"
-    document.getElementById("list").children[2].style.visibility = "hidden"
-    console.log(document.getElementById("list").children[5])
-
+    //hiding the same elements from the .sidebar
+    document.getElementById("mobile").children[0].style.visibility = "hidden"
+    document.getElementById("mobile").children[1].style.visibility = "hidden"
     }
     
 
